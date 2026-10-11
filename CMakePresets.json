@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "msvc-x64",
+      "displayName": "MSVC x64 (newest installed Visual Studio)",
+      "description": "Visual Studio generator: works from any terminal, no Developer Command Prompt required",
+      "binaryDir": "${sourceDir}/build",
+      "architecture": { "value": "x64", "strategy": "set" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "debug", "displayName": "Debug", "configurePreset": "msvc-x64", "configuration": "Debug" },
+    { "name": "release", "displayName": "Release", "configurePreset": "msvc-x64", "configuration": "Release" }
+  ]
+}

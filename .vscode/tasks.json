@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake: configure",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--preset", "msvc-x64", "-DCMAKE_SYSTEM_VERSION='10.0.26100.0'"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: build Debug",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "--preset", "debug"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "CMake: configure",
+      "problemMatcher": "$msCompile",
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "CMake: build Release",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "--preset", "release"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "CMake: configure",
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "Run Debug",
+      "type": "process",
+      "command": "${workspaceFolder}/build/Debug/directx_example.exe",
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "CMake: build Debug",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Release",
+      "type": "process",
+      "command": "${workspaceFolder}/build/Release/directx_example.exe",
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "CMake: build Release",
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake: clean",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "--preset", "debug", "--target", "clean"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}
